@@ -18,7 +18,22 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean returnCat(int id) {
-		// TODO: Fill in
+		// Loop through every cat in the cat list
+		for (Cat c : cats) {
+			// If we found a cat whose id matches the id
+			// of the argument, then we have a match and
+			// can thus return true
+			if (c.getId() == id) {
+				if(c.getRented()){
+					System.out.println("Welcome back, "+ c.getName()+"!");
+					return true;
+				}else{
+					System.out.println(c.getName()+" is already here!");
+					return false;
+				}
+			}
+		}	
+		System.out.println("Invalid cat ID.");
 		return false;
 	}
 
@@ -34,6 +49,23 @@ public class RentACatImpl implements RentACat {
 
 	public boolean rentCat(int id) {
 		// TODO: Fill in
+		// Loop through every cat in the cat list
+		for (Cat c : cats) {
+			// If we found a cat whose id matches the id
+			// of the argument, then we have a match and
+			// can thus return a reference to that cat
+			if (c.getId() == id) {
+				if(c.getRented()){
+					System.out.println("Sorry, " + c.getName() +" is not here!");
+					return false;
+				}else{
+					System.out.println(c.getName() + " has been rented.");
+					c.rentCat();
+					return true;
+				}
+			}
+		}
+		System.out.println("Invalid cat ID.");
 		return false;
 	}
 
@@ -48,6 +80,16 @@ public class RentACatImpl implements RentACat {
 
 	public boolean renameCat(int id, String name) {
 		// TODO: Fill in
+		for (Cat c : cats) {
+			// If we found a cat whose id matches the id
+			// of the argument, then we have a match and
+			// can thus return a reference to that cat
+			if (c.getId() == id) {
+				c.renameCat(name);
+				return true;
+			}
+		}
+		System.out.println("Invalid cat ID.");
 		return false;
 	}
 
@@ -63,7 +105,14 @@ public class RentACatImpl implements RentACat {
 
 	public String listCats() {
 		// TODO: Fill in
-		return "WRITE CODE FOR THIS";
+		String list = "";
+		for (Cat c : cats) {
+			if(c.getRented()){
+				continue;
+			}
+			list += (c.toString() + "\n");
+		}
+		return list;
 	}
 
 	/**

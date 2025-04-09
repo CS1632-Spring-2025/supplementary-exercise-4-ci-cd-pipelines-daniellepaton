@@ -12,9 +12,7 @@ public interface RentACat {
 				return new RentACatBuggy();
 			case SOLUTION:
 				return new RentACatSolution();
-			case MOCK:
-				// TODO: Return a mock object that emulates the behavior of a real object.
-				
+			case MOCK:				
 				return null;
 			default:
 				assert (false);
